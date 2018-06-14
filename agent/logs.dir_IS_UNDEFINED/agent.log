@@ -1,0 +1,7 @@
+2018-06-09 21:02:59.905 [main] INFO  com.alibaba.dubbo.performance.demo.agent.AgentApp - Starting AgentApp on zhangjiandeMacBook-Pro.local with PID 10982 (/Users/zhangjian/filegit/hundun2/agent/mesh-agent/target/classes started by zhangjian in /Users/zhangjian/filegit/hundun2/agent)
+2018-06-09 21:02:59.907 [main] INFO  com.alibaba.dubbo.performance.demo.agent.AgentApp - No active profile set, falling back to default profiles: default
+2018-06-09 21:02:59.953 [main] INFO  o.s.c.a.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@2ea227af: startup date [Sat Jun 09 21:02:59 CST 2018]; root of context hierarchy
+2018-06-09 21:03:00.446 [main] INFO  o.s.jmx.export.annotation.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2018-06-09 21:03:00.459 [main] INFO  com.alibaba.dubbo.performance.demo.agent.AgentApp - Started AgentApp in 15.891 seconds (JVM running for 22.635)
+2018-06-09 21:03:00.460 [Thread-34] INFO  o.s.c.a.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@2ea227af: startup date [Sat Jun 09 21:02:59 CST 2018]; root of context hierarchy
+2018-06-09 21:03:00.462 [Thread-34] INFO  o.s.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
