@@ -17,7 +17,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 public class ConsumerAgentHandler extends SimpleChannelInboundHandler<DubboRpcResponse> {
 
-    private Logger logger = LoggerFactory.getLogger(ConsumerAgentHandler.class);
+//    private Logger logger = LoggerFactory.getLogger(ConsumerAgentHandler.class);
 
     private static final AsciiString CONTENT_TYPE = AsciiString.cached("Content-Type");
     private static final AsciiString CONTENT_LENGTH = AsciiString.cached("Content-Length");
@@ -36,7 +36,7 @@ public class ConsumerAgentHandler extends SimpleChannelInboundHandler<DubboRpcRe
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        logger.error("consumerAgentHandler出现异常", cause);
+//        logger.error("consumerAgentHandler出现异常", cause);
         ctx.channel().close();
     }
 

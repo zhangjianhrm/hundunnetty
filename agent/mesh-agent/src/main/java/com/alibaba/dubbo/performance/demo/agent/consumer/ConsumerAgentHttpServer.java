@@ -30,9 +30,9 @@ import org.slf4j.LoggerFactory;
 
 public final class ConsumerAgentHttpServer {
 
-    private Logger logger = LoggerFactory.getLogger(ConsumerAgentHttpServer.class);
+//    private Logger logger = LoggerFactory.getLogger(ConsumerAgentHttpServer.class);
 
-    private EventLoopGroup bossGroup = new NioEventLoopGroup(4);
+    private EventLoopGroup bossGroup = new NioEventLoopGroup(1);
     private EventLoopGroup workerGroup = new NioEventLoopGroup(4);
 
     private ServerBootstrap bootstrap;
@@ -54,15 +54,15 @@ public final class ConsumerAgentHttpServer {
                     .childHandler(new ConsumerAgentHttpServerInitializer(client))
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
                     .childOption(ChannelOption.TCP_NODELAY, true);
-//            Channel ch = bootstrap.bind(PORT).sync().channel();
+            Channel ch = bootstrap.bind(PORT).sync().channel();
 //            logger.info("consumer-agent provider is ready to receive request from consumer\n" +
 //                    "export at http://127.0.0.1:{}", PORT); //20000
-//            ch.closeFuture().sync();
-            ChannelFuture future = bootstrap.bind("127.0.0.1", PORT);
-            future.syncUninterruptibly();
+            ch.closeFuture().sync();
+//            ChannelFuture future = bootstrap.bind("127.0.0.1", PORT);
+//            future.syncUninterruptibly();
         } catch (Exception e) {
 
-            logger.error("consumer-agent启动失败", e);
+//            logger.error("consumer-agent启动失败", e);
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();

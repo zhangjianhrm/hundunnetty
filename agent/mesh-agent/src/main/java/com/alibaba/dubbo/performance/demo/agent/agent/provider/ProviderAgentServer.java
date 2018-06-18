@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 public class ProviderAgentServer {
 
-    private Logger logger = LoggerFactory.getLogger(ProviderAgentServer.class);
+//    private Logger logger = LoggerFactory.getLogger(ProviderAgentServer.class);
 
     private EventLoopGroup bossGroup = new NioEventLoopGroup(1);
     private static EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -43,7 +43,7 @@ public class ProviderAgentServer {
 //                    "export at 127.0.0.1:{}", port + 50);
             channel.closeFuture().sync();
         } catch (Exception e) {
-            logger.error("provider-agent启动失败", e);
+//            logger.error("provider-agent启动失败", e);
         } finally {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();

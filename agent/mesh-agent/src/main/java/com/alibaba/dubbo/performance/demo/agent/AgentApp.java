@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class AgentApp {
 
-    static final Logger logger = LoggerFactory.getLogger(AgentApp.class);
+//    static final Logger logger = LoggerFactory.getLogger(AgentApp.class);
 
     // agent会作为sidecar，部署在每一个Provider和Consumer机器上
     // 在Provider端启动agent时，添加JVM参数

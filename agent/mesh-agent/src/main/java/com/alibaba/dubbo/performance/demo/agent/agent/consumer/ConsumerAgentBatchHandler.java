@@ -19,7 +19,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 public class ConsumerAgentBatchHandler extends SimpleChannelInboundHandler<Object> {
 
-    private Logger logger = LoggerFactory.getLogger(ConsumerAgentBatchHandler.class);
+//    private Logger logger = LoggerFactory.getLogger(ConsumerAgentBatchHandler.class);
 
     private static final AsciiString CONTENT_TYPE = AsciiString.cached("Content-Type");
     private static final AsciiString CONTENT_LENGTH = AsciiString.cached("Content-Length");
@@ -52,7 +52,7 @@ public class ConsumerAgentBatchHandler extends SimpleChannelInboundHandler<Objec
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        logger.error("consumerAgentHandler出现异常", cause);
+//        logger.error("consumerAgentHandler出现异常", cause);
         ctx.channel().close();
     }
 
