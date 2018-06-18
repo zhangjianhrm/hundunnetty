@@ -1,14 +1,9 @@
-package com.alibaba.dubbo.performance.demo.agent.rpc;
+package com.alibaba.dubbo.performance.demo.agent.myrpc;
 
 import java.util.Map;
 
-/**
- * @author 徐靖峰
- * Date 2018-05-25
- */
 public interface Response {
 
-    long getRequestId();
 
     Map<String, String> getAttachments();
 

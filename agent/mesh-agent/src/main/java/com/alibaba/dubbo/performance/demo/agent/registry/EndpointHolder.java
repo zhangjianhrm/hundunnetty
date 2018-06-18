@@ -1,8 +1,6 @@
 package com.alibaba.dubbo.performance.demo.agent.registry;
 
-import com.alibaba.dubbo.performance.demo.agent.cluster.loadbalance.LoadBalance;
-import com.alibaba.dubbo.performance.demo.agent.cluster.loadbalance.WeightRoundRobinLoadBalance;
-import com.alibaba.dubbo.performance.demo.agent.rpc.Endpoint;
+import com.alibaba.dubbo.performance.demo.agent.myrpc.Endpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

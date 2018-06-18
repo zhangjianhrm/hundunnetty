@@ -1,12 +1,12 @@
 package com.alibaba.dubbo.performance.demo.agent.agent.consumer;
 
-import com.alibaba.dubbo.performance.demo.agent.cluster.loadbalance.LoadBalance;
-import com.alibaba.dubbo.performance.demo.agent.cluster.loadbalance.WeightRoundRobinLoadBalance;
+import com.alibaba.dubbo.performance.demo.agent.loadbalance.LoadBalance;
+import com.alibaba.dubbo.performance.demo.agent.loadbalance.WeightRoundRobinLoadBalance;
 import com.alibaba.dubbo.performance.demo.agent.dubbo.codec.DubboRpcBatchDecoder;
 import com.alibaba.dubbo.performance.demo.agent.dubbo.codec.DubboRpcEncoder;
 import com.alibaba.dubbo.performance.demo.agent.registry.EndpointHolder;
-import com.alibaba.dubbo.performance.demo.agent.rpc.Endpoint;
-import com.alibaba.dubbo.performance.demo.agent.transport.Client;
+import com.alibaba.dubbo.performance.demo.agent.myrpc.Endpoint;
+import com.alibaba.dubbo.performance.demo.agent.mytransport.Client;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -37,7 +37,6 @@ public class NormalClient implements Client {
     public void init() {
         this.loadBalance = new WeightRoundRobinLoadBalance();
         List<Endpoint> endpoints = EndpointHolder.getEndpoints();
-        System.out.println(endpoints);
         this.loadBalance.onRefresh(endpoints);
         for (Endpoint endpoint : endpoints) {
             Channel channel = connect(endpoint);

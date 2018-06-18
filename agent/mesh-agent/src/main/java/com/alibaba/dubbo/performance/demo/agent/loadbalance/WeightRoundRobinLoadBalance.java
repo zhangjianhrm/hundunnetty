@@ -1,8 +1,6 @@
-package com.alibaba.dubbo.performance.demo.agent.cluster.loadbalance;
+package com.alibaba.dubbo.performance.demo.agent.loadbalance;
 
-import com.alibaba.dubbo.performance.demo.agent.rpc.Endpoint;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.alibaba.dubbo.performance.demo.agent.myrpc.Endpoint;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class WeightRoundRobinLoadBalance implements LoadBalance {
 
-//    private Logger logger = LoggerFactory.getLogger(WeightRoundRobinLoadBalance.class);
 
     private volatile EndpointHolder endpointHolder;
 
@@ -27,9 +24,8 @@ public class WeightRoundRobinLoadBalance implements LoadBalance {
         AtomicInteger cursor = new AtomicInteger(0);
 
         EndpointHolder(List<Endpoint> endpoints) {
-//            logger.info("WeightRoundRobinLoadBalance build new EndpointHolder. weights:" + endpoints);
             List<Integer> weightsArr = endpoints.stream().map(Endpoint::getWeight).collect(Collectors.toList());
-            // 求出最大公约数，若不为1，对权重做除法
+
             int weightGcd = findGcd(weightsArr.toArray(new Integer[]{}));
             if (weightGcd != 1) {
                 for (Endpoint endpoint : endpoints) {
@@ -50,12 +46,11 @@ public class WeightRoundRobinLoadBalance implements LoadBalance {
             return endpoint;
         }
 
-        // 求最大公约数
         private int findGcd(int n, int m) {
             return (n == 0 || m == 0) ? n + m : findGcd(m, n % m);
         }
 
-        // 求最大公约数
+
         private int findGcd(Integer[] arr) {
             if (arr.length == 1) return arr[0];
             int i = 0;

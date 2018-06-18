@@ -1,18 +1,3 @@
-/*
- * Copyright 2013 The Netty Project
- *
- * The Netty Project licenses this file to you under the Apache License,
- * version 2.0 (the "License"); you may not use this file except in compliance
- * with the License. You may obtain a copy of the License at:
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- */
 package com.alibaba.dubbo.performance.demo.agent.consumer;
 
 import com.alibaba.dubbo.performance.demo.agent.dubbo.common.JsonUtils;
@@ -20,16 +5,14 @@ import com.alibaba.dubbo.performance.demo.agent.dubbo.common.RequestParser;
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.DubboRpcRequest;
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.DubboRpcResponse;
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.RpcInvocation;
-import com.alibaba.dubbo.performance.demo.agent.rpc.DefaultRequest;
-import com.alibaba.dubbo.performance.demo.agent.rpc.Request;
-import com.alibaba.dubbo.performance.demo.agent.rpc.RpcCallbackFuture;
-import com.alibaba.dubbo.performance.demo.agent.rpc.RpcResponseHolder;
-import com.alibaba.dubbo.performance.demo.agent.transport.Client;
+import com.alibaba.dubbo.performance.demo.agent.myrpc.DefaultRequest;
+import com.alibaba.dubbo.performance.demo.agent.myrpc.Request;
+import com.alibaba.dubbo.performance.demo.agent.myrpc.RpcCallbackFuture;
+import com.alibaba.dubbo.performance.demo.agent.myrpc.RpcResponseHolder;
+import com.alibaba.dubbo.performance.demo.agent.mytransport.Client;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.FullHttpRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -39,9 +22,6 @@ import java.util.Map;
 
 public class ConsumerAgentHttpServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 
-//    private Logger logger = LoggerFactory.getLogger(ConsumerAgentHttpServerHandler.class);
-
-//    static ThreadLocal<ThreadBoundClient> clientHolder = new ThreadLocal<>();
     private Client client;
 
     public ConsumerAgentHttpServerHandler(Client client){
@@ -50,12 +30,6 @@ public class ConsumerAgentHttpServerHandler extends SimpleChannelInboundHandler<
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-//        if(clientHolder.get()==null){
-//            final Channel inboundChannel = ctx.channel();
-//            ThreadBoundClient threadBoundClient = new ThreadBoundClient(inboundChannel.eventLoop());
-//            threadBoundClient.init();
-//            clientHolder.set(threadBoundClient);
-//        }
     }
 
     @Override
@@ -95,17 +69,14 @@ public class ConsumerAgentHttpServerHandler extends SimpleChannelInboundHandler<
         dubboRpcRequest.setVersion("2.0.0");
         dubboRpcRequest.setTwoWay(true);
         dubboRpcRequest.setData(invocation);
-//        logger.info("requestId=" + dubboRpcRequest.getId());
         RpcCallbackFuture<DubboRpcResponse> rpcCallbackFuture = new RpcCallbackFuture<>();
         rpcCallbackFuture.setChannel(ctx.channel());
         RpcResponseHolder.put(dubboRpcRequest.getId(), rpcCallbackFuture);
-//        clientHolder.get().getChannel().writeAndFlush(dubboRpcRequest);
         client.getChannel().writeAndFlush(dubboRpcRequest);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-//        logger.error("http服务器响应出错", cause);
         ctx.channel().close();
     }
 

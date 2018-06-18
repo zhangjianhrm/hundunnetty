@@ -1,4 +1,4 @@
-package com.alibaba.dubbo.performance.demo.agent.rpc;
+package com.alibaba.dubbo.performance.demo.agent.myrpc;
 
 public class Endpoint {
     private final String host;

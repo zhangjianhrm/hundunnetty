@@ -1,16 +1,14 @@
 package com.alibaba.dubbo.performance.demo.agent.agent.consumer;
 
 import com.alibaba.dubbo.performance.demo.agent.dubbo.model.DubboRpcResponse;
-import com.alibaba.dubbo.performance.demo.agent.rpc.RpcCallbackFuture;
-import com.alibaba.dubbo.performance.demo.agent.rpc.RpcResponseHolder;
+import com.alibaba.dubbo.performance.demo.agent.myrpc.RpcCallbackFuture;
+import com.alibaba.dubbo.performance.demo.agent.myrpc.RpcResponseHolder;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.util.AsciiString;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -18,9 +16,6 @@ import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 public class ConsumerAgentBatchHandler extends SimpleChannelInboundHandler<Object> {
-
-//    private Logger logger = LoggerFactory.getLogger(ConsumerAgentBatchHandler.class);
-
     private static final AsciiString CONTENT_TYPE = AsciiString.cached("Content-Type");
     private static final AsciiString CONTENT_LENGTH = AsciiString.cached("Content-Length");
     private static final AsciiString CONNECTION = AsciiString.cached("Connection");
@@ -52,7 +47,6 @@ public class ConsumerAgentBatchHandler extends SimpleChannelInboundHandler<Objec
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-//        logger.error("consumerAgentHandler出现异常", cause);
         ctx.channel().close();
     }
 

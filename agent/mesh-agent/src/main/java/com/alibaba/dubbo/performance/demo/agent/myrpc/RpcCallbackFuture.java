@@ -1,15 +1,10 @@
-package com.alibaba.dubbo.performance.demo.agent.rpc;
+package com.alibaba.dubbo.performance.demo.agent.myrpc;
 
 import io.netty.channel.Channel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author 徐靖峰[OF2938]
- * company qianmi.com
- * Date 2018-05-21
- */
 public class RpcCallbackFuture<T> {
 
     private Channel channel;
@@ -72,11 +67,9 @@ public class RpcCallbackFuture<T> {
         notifyListeners();
         return true;
     }
-
     public Channel getChannel() {
         return channel;
     }
-
     public void setChannel(Channel channel) {
         this.channel = channel;
     }

@@ -1,6 +1,6 @@
 package com.alibaba.dubbo.performance.demo.agent.registry;
 
-import com.alibaba.dubbo.performance.demo.agent.rpc.Endpoint;
+import com.alibaba.dubbo.performance.demo.agent.myrpc.Endpoint;
 
 import java.util.List;
 

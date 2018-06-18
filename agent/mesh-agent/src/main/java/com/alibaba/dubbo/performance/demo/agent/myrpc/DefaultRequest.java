@@ -1,4 +1,4 @@
-package com.alibaba.dubbo.performance.demo.agent.rpc;
+package com.alibaba.dubbo.performance.demo.agent.myrpc;
 
 import java.io.Serializable;
 
@@ -9,7 +9,6 @@ public class DefaultRequest implements Request,Serializable {
     private String method;
     private String parameterTypesString;
     private String parameter;
-    private long requestId;
 
     @Override
     public String getInterfaceName() {
@@ -47,12 +46,4 @@ public class DefaultRequest implements Request,Serializable {
         this.parameter = parameter;
     }
 
-    @Override
-    public long getRequestId() {
-        return requestId;
-    }
-
-    public void setRequestId(long requestId) {
-        this.requestId = requestId;
-    }
 }
