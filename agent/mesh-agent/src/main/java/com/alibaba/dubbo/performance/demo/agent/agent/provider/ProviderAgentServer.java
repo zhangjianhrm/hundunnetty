@@ -39,15 +39,15 @@ public class ProviderAgentServer {
                     .childOption(ChannelOption.AUTO_READ, false);
             int port = Integer.valueOf(System.getProperty("server.port"));
             Channel channel = bootstrap.bind(IpHelper.getHostIp(), port + 50).sync().channel();
-            logger.info("provider-agent provider is ready to receive request from consumer-agent\n" +
-                    "export at 127.0.0.1:{}", port + 50);
+//            logger.info("provider-agent provider is ready to receive request from consumer-agent\n" +
+//                    "export at 127.0.0.1:{}", port + 50);
             channel.closeFuture().sync();
         } catch (Exception e) {
             logger.error("provider-agent启动失败", e);
         } finally {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
-            logger.info("provider-agent provider was closed");
+//            logger.info("provider-agent provider was closed");
         }
     }
 }

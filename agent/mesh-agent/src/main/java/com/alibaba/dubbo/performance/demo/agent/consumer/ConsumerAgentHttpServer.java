@@ -19,6 +19,7 @@ import com.alibaba.dubbo.performance.demo.agent.agent.consumer.NormalClient;
 import com.alibaba.dubbo.performance.demo.agent.transport.Client;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -31,8 +32,8 @@ public final class ConsumerAgentHttpServer {
 
     private Logger logger = LoggerFactory.getLogger(ConsumerAgentHttpServer.class);
 
-    private EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-    private EventLoopGroup workerGroup = new NioEventLoopGroup();
+    private EventLoopGroup bossGroup = new NioEventLoopGroup(4);
+    private EventLoopGroup workerGroup = new NioEventLoopGroup(4);
 
     private ServerBootstrap bootstrap;
 
@@ -53,16 +54,19 @@ public final class ConsumerAgentHttpServer {
                     .childHandler(new ConsumerAgentHttpServerInitializer(client))
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
                     .childOption(ChannelOption.TCP_NODELAY, true);
-            Channel ch = bootstrap.bind(PORT).sync().channel();
-            logger.info("consumer-agent provider is ready to receive request from consumer\n" +
-                    "export at http://127.0.0.1:{}", PORT); //20000
-            ch.closeFuture().sync();
+//            Channel ch = bootstrap.bind(PORT).sync().channel();
+//            logger.info("consumer-agent provider is ready to receive request from consumer\n" +
+//                    "export at http://127.0.0.1:{}", PORT); //20000
+//            ch.closeFuture().sync();
+            ChannelFuture future = bootstrap.bind("127.0.0.1", PORT);
+            future.syncUninterruptibly();
         } catch (Exception e) {
+
             logger.error("consumer-agent启动失败", e);
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
-            logger.info("consumer-agent provider was closed");
+//            logger.info("consumer-agent provider was closed");
         }
     }
 

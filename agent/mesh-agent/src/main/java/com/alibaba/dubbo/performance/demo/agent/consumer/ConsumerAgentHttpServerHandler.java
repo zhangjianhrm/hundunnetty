@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class ConsumerAgentHttpServerHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
 
-    private Logger logger = LoggerFactory.getLogger(ConsumerAgentHttpServerHandler.class);
+//    private Logger logger = LoggerFactory.getLogger(ConsumerAgentHttpServerHandler.class);
 
 //    static ThreadLocal<ThreadBoundClient> clientHolder = new ThreadLocal<>();
     private Client client;
@@ -105,7 +105,7 @@ public class ConsumerAgentHttpServerHandler extends SimpleChannelInboundHandler<
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        logger.error("http服务器响应出错", cause);
+//        logger.error("http服务器响应出错", cause);
         ctx.channel().close();
     }
 
